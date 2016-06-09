@@ -1,5 +1,4 @@
 var Team = require('./../models/TeamModel.js');
-var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
 exports.createTeam = function(req, res) {
