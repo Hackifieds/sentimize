@@ -17,3 +17,15 @@ exports.createTeam = function(req, res) {
     console.log(err);
   })
 };
+
+exports.getCurrentTeam = function(req, res) {
+  User.where({ id: req.team.id }).fetch()
+    .then(function(currentTeam) {
+      // Null out password before sending information
+      currentTeam.password = null;
+      res.status(200).send(currentUser);
+    })
+    .catch(function(err) {
+      console.error(err);
+    })
+};
