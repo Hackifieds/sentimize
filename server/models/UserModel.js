@@ -3,6 +3,7 @@ var Snapshot = require('./SnapshotModel.js');
 var Session = require('./SessionModel.js');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
+var Team = require("./TeamModel.js")
 
 db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
@@ -15,6 +16,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('ethnicity', 255);
       user.string('firstName', 255);
       user.string('lastName', 255);
+      user.string('teamId', 255)
       user.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -30,6 +32,10 @@ var User = db.Model.extend({
   },
   sessions: function() {
     return this.hasMany(Session);
+  },
+
+ team: function() {
+    return this.belongTo(Team, 'teamId');
   },
 
   initialize: function() {
