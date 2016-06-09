@@ -26,11 +26,12 @@ module.exports = {
 
   getSessions: function(req, res) {
     var queryObj = {
-      userId: req.user.id
+      userId: req.user.Id
     }
 
     Session.where(queryObj).fetchAll()
       .then(function(sessions) {
+        Session.where({teamid: team})
         res.status(200).send(sessions);
       })
       .catch(function(err) {
