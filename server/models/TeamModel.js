@@ -13,7 +13,6 @@ db.knex.schema.hasTable('team').then(function(exists) {
   }
 });
 
-
 var Team = db.Model.extend({
   tableName: 'team',
   users: function() {
